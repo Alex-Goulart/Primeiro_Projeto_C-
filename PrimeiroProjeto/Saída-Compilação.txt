@@ -1,0 +1,5 @@
+﻿A construção começou em 12:52...
+1>------ Compilação iniciada: Projeto: PrimeiroProjeto, Configuração: Debug Any CPU ------
+1>  PrimeiroProjeto -> C:\Users\alexm\OneDrive\Documentos\Alura (Curos de Programação)\Programação C#\Primeiro Projeto\PrimeiroProjeto\PrimeiroProjeto\bin\Debug\net10.0\PrimeiroProjeto.dll
+========== Compilação: 1 bem-sucedida, 0 com falha, 0 atualizada, 0 ignorada ==========
+========== Compilação concluído às 12:52 e levou 02,021 segundos ==========
