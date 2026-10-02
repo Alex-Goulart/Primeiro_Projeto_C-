@@ -9,13 +9,13 @@ void ExibirLogo()
 {
     Console.WriteLine(@"
 
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
-");
+        ░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
+        ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
+        ╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
+        ░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
+        ██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
+        ╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
+    ");
     Console.WriteLine(mensagemDeBoasVindas);
 }
 
@@ -36,15 +36,17 @@ void ExibirMenu()
     // Verifica qual opção foi escolhida
     switch (opcaoEscolhidaNumerica)
     {
-        case 1: RegistrarBandas(); // Se escolher 1, chama a função para registrar uma banda
+        case 1: 
+            RegistrarBandas(); // Se escolher 1, chama a função para registrar uma banda
             break;
-        case 2: MostrarBandasRegistradas(); // Se escolher 2, chama a função para mostrar as bandas cadastradas
+        case 2:
+            MostrarBandasRegistradas(); // Se escolher 2, chama a função para mostrar as bandas cadastradas
             break;
-        case 3: AvaliarUmaBanda(); // Se escolher 3, chama a função para avaliar uma banda
-            Console.WriteLine("Você escolheu a opção:" + opcaoEscolhida);
+        case 3:
+            AvaliarUmaBanda(); // Se escolher 3, chama a função para avaliar uma banda
             break;
-        case 4: // Se escolher 4, futuramente chamará a função para exibir a média
-            Console.WriteLine("Você escolheu a opção:" + opcaoEscolhida);
+        case 4:
+            MostrarMedia(); // Se escolher 4, chama a função para exibir a média
             break;
         case 0: // Se escolher 0, encerra o programa
             Console.WriteLine("Tchau!! Encerrar o programa..");
@@ -65,7 +67,7 @@ void RegistrarBandas()
     string nomeDaBanda = Console.ReadLine()!; // Armazena o nome digitado pelo usuário
     bandasRegistradas.Add(nomeDaBanda, new List<int>());
     Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!!"); // Informa que a banda foi cadastrada com sucesso
-    Thread.Sleep(2000); // Aguarda 2 segundos antes de continuar
+    Thread.Sleep(4000); // Aguarda 4 segundos antes de continuar
     Console.Clear();
     ExibirMenu(); // Retorna para o menu principal
 }
@@ -92,7 +94,57 @@ void MostrarBandasRegistradas()
 
 void AvaliarUmaBanda()
 {
+    Console.Clear(); // Limpa o conteúdo atual do console
+    ExibirTituloOpcao("Avaliar uma Banda"); // Exibe o título da opção
+    Console.Write("Digite o nome da banda que deseja avaliar: "); // Solicita o nome da banda que será avaliada
+    string nomeDaBanda = Console.ReadLine()!; // Armazena o nome
+    if (bandasRegistradas.ContainsKey(nomeDaBanda)) // Verifica se a banda existe na lista
+    {
+        Console.Write($"\nQual a nota da banda {nomeDaBanda}: "); // Solicita a nota da banda
+        int nota = int.Parse(Console.ReadLine()!); // Armazena a nota digitada pelo usuário
+        bandasRegistradas[nomeDaBanda].Add(nota); // Adiciona a nota à lista de notas da banda
+        Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}!"); // Informa que a nota foi registrada com sucesso
+        Thread.Sleep(4000); // Aguarda 4 segundos antes de continuar
+        Console.Clear(); // Limpa o console
+        ExibirMenu(); // Retorna para o menu principal
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!"); // Informa que a banda não foi encontrada
+        Console.WriteLine("\nAperte uma tecla para voltar ao menu principal!"); // Solicita que o usuário pressione uma tecla antes de retornar ao menu
+        Console.ReadKey();
+        Console.Clear(); // Limpa o console
+        ExibirMenu(); // Retorna para o menu principal
+    }
+}
 
+void MostrarMedia()
+{
+    Console.Clear(); // Limpa o conteúdo atual do console
+    ExibirTituloOpcao("Média de uma Banda"); // Exibe o título da opção
+    Console.Write("Digite o nome da banda que deseja ver a média: "); // Solicita o nome da banda que terá a média calculada
+    string nomeDaBanda = Console.ReadLine()!; // Armazena o nome digitado pelo usuário
+    if (bandasRegistradas.ContainsKey(nomeDaBanda)) // Verifica se a banda existe na lista
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda]; // Obtém a lista de notas da banda
+        if (notasDaBanda.Count > 0) // Verifica se existem notas registradas para a banda
+        {
+            double media = notasDaBanda.Average(); // Calcula a média das notas
+            Console.WriteLine($"\nA média da banda {nomeDaBanda} é: {media:F2}"); // Exibe a média com duas casas decimais
+        }
+        else
+        {
+            Console.WriteLine($"\nA banda {nomeDaBanda} ainda não possui avaliações."); // Informa que não há avaliações para a banda
+        }
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!"); // Informa que a banda não foi encontrada
+    }
+    Console.WriteLine("\nAperte uma tecla para voltar ao menu principal!"); // Solicita que o usuário pressione uma tecla antes de retornar ao menu
+    Console.ReadKey();
+    Console.Clear(); // Limpa o console
+    ExibirMenu(); // Retorna para o menu principal
 }
 
 // Função responsável por deixar o título de cada opção visualmente mais organizado
